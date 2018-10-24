@@ -2,6 +2,8 @@
 
 [MeCab](http://taku910.github.io/mecab/) wrapper library for PHP.
 
+[![Build Status](https://travis-ci.com/ukkz/php-mecab-wrapper.svg?branch=master)](https://travis-ci.com/ukkz/php-mecab-wrapper)
+
 ## Install
 
 `composer require ukkz/php-mecab-wrapper`
