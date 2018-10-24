@@ -39,7 +39,13 @@ EOS
 
 ```
 $mecab_sentence_class = new MeCab\Sentence("解析したい日本語文章");
-$mecab_word_class = $mecab_sentence_class->getWord();
+$mecab_word_class_generator = $mecab_sentence_class->getWord();
+
+foreach ($mecab_word_class_generator as $mecab_word_class) {
+    // 形態素ごとの処理など
+    echo $mecab_word_class . '/';
+}
+// 出力は "解析/し/たい/日本語/文章/" となります。
 ```
 
 `getWord()`メソッドでMeCab\Wordクラスのジェネレータを返します。  
