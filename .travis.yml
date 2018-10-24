@@ -1,0 +1,10 @@
+language: php
+php:
+  - 7.2.4
+
+before_script:
+  - sudo apt-get install libmecab2 libmecab-dev mecab mecab-ipadic-utf8 mecab-utils
+  - composer install --dev
+
+script:
+  - phpunit
