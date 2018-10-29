@@ -12,6 +12,20 @@ class MeCabWrapperTest extends TestCase
     private $sample_text_2 = "港では「いかなご」が水揚げされていた. \n3月の末ごろに街を歩けば, 釘煮の, 甘辛い醤油の香りがあちこちにたちこめている. 今年も, 春がやってきたのだ.";
 
     /**
+     * 指定した辞書ディレクトリに辞書が存在しない場合の例外
+     *
+     * @return void
+     */
+    public function test_no_dic_exception()
+    {
+        try {
+            $nodic = new MeCabSentence($this->sample_text_1, '/ramen/abura/yasai');
+        } catch (\Exception $e) {
+            $this->assertEquals('Dictionary is not found in /ramen/abura/yasai', $e->getMessage());
+        }
+    }
+
+    /**
      * 文章を文ごとに分割する
      *
      * @return void
