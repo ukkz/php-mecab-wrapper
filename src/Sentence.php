@@ -16,10 +16,10 @@ class Sentence
 
         if ($exit_code === 127) {
             // コマンドが見つからないとき
-            throw \Exception('Command "mecab" is not found');
+            throw new \Exception('Command "mecab" is not found');
         } elseif ($exit_code !== 0) {
             // それ以外のよくわからんエラー
-            throw \Exception('Unknown error occured');
+            throw new \Exception('Unknown error occured');
         }
     }
 
