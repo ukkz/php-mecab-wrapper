@@ -8,18 +8,23 @@ class Sentence
     const MECAB_LINE_END = 'EOS';
     private $command_raw_output = [];
 
-    public function __construct(string $japanese_sentence)
+    public function __construct(string $japanese_sentence, string $dictionary_directory = null)
     {
+        // 辞書ディレクトリの指定があるか
+        $dic_option = (empty($dictionary_directory)) ? '' : ' -d ' . escapeshellarg($dictionary_directory);
         // mecab実行
-        $cmd = 'echo ' . escapeshellarg($japanese_sentence) . ' | mecab';
-        exec($cmd, $this->command_raw_output, $exit_code);
+        $cmd = 'echo ' . escapeshellarg($japanese_sentence) . ' | mecab' . $dic_option;
+        $last_row = exec($cmd, $this->command_raw_output, $exit_code);
 
         if ($exit_code === 127) {
             // コマンドが見つからないとき
             throw new \Exception('Command "mecab" is not found');
+        } elseif (strpos($last_row, 'no such file or directory') !== false) {
+            // 辞書ファイルが指定のディレクトリに見つからないとき
+            throw new \Exception('Dictionary is not found in ' . $dictionary_directory);
         } elseif ($exit_code !== 0) {
             // それ以外のよくわからんエラー
-            throw new \Exception('Unknown error occured');
+            throw new \Exception('Unknown error occured: ' . $last_row);
         }
     }
 
