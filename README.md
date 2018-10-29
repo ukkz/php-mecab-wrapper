@@ -38,7 +38,7 @@ EOS
 #### MeCab\Sentence
 
 ```
-$mecab_sentence_class = new MeCab\Sentence("解析したい日本語文章");
+$mecab_sentence_class = new MeCab\Sentence("解析したい日本語文章", 辞書ディレクトリのパス);
 $mecab_word_class_generator = $mecab_sentence_class->getWord();
 
 foreach ($mecab_word_class_generator as $mecab_word_class) {
@@ -49,7 +49,8 @@ foreach ($mecab_word_class_generator as $mecab_word_class) {
 ```
 
 `getWord()`メソッドでMeCab\Wordクラスのジェネレータを返します。  
-扱いにくい場合は`getAllWords()`でMeCab\Wordクラスの配列を得ることができます。
+扱いにくい場合は`getAllWords()`でMeCab\Wordクラスの配列を得ることができます。  
+constructの第2引数は使いたい辞書があれば指定してください（省略可能）。
 
 #### MeCab\Word
 
@@ -103,10 +104,16 @@ foreach ($sample_sentence->getWord() as $sample_word) {
 - [MeCab](http://taku910.github.io/mecab/)
 - PHP: >= 7.0
 
+## Releases
+
+|Date|Version|Description|
+|:--|:--|:--|
+|Oct 19, 18|1.1|辞書を指定できるようになった / add option for the dictionaries|
+|Oct 25, 18|1.0|First release|
+
 ## ToDo
 
 - 文字コードをはっきりさせたい
-- 辞書の指定ができるとよい？
 
 ## License
 
